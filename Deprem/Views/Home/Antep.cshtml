@@ -1,0 +1,43 @@
+﻿@model List<Deprem>
+
+
+<table class="table table-striped" id="my-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Şehir</th>
+            <th scope="col">Şiddet</th>
+            <th scope="col">Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < ViewBag.IlAntep.Count; i++)
+        {
+            <tr>
+                <td>@(i+1)</td>
+                <td>@ViewBag.IlAntep[i]</td>
+
+                @{
+                    if (ViewBag.SiddetAntep[i] >= 3.0m && ViewBag.SiddetAntep[i] < 4.0m)
+                    {
+                        <td class="bg-warning">@ViewBag.SiddetAntep[i]</td>
+                    }
+                    else if (ViewBag.SiddetAntep[i] >= 4.0m)
+                    {
+
+                        <td class="bg-danger">@ViewBag.SiddetAntep[i]</td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.SiddetAntep[i]</td>
+
+                    }
+                }
+                
+                <td>@ViewBag.TarihAntep[i]</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" asp-controller="Home">ANASAYFAYA DÖN</a>

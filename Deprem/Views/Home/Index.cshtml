@@ -1,0 +1,70 @@
+﻿@model List<Deprem>
+@{
+    ViewData["Title"] = "Home Page";
+
+
+}
+
+<div>
+
+
+
+    <a asp-action="Elazig" asp-controller="Home">ELAZIĞ</a>
+    <br />
+    <a asp-action="Malatya" asp-controller="Home">MALATYA</a>
+    <br />
+    <a asp-action="Maras" asp-controller="Home">KAHRAMANMARAŞ</a>
+    <br />
+    <a asp-action="Hatay" asp-controller="Home">HATAY</a>
+    <br />
+    <a asp-action="Adiyaman" asp-controller="Home">ADIYAMAN</a>
+    <br />
+    <a asp-action="Antep" asp-controller="Home">GAZİANTEP</a>
+    <br />
+    <a asp-action="Bingol" asp-controller="Home">BİNGÖL</a>
+
+
+
+</div>
+
+<table class="table table-striped" id="my-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Şehir</th>
+            <th scope="col">Şiddet</th>
+            <th scope="col">Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < ViewBag.Il.Count; i++)
+        {
+            <tr>
+                <td>@(i+1)</td>
+                <td>@ViewBag.Il[i]</td>
+
+                @{
+                    if (ViewBag.Siddet[i] >= 3.0m && ViewBag.Siddet[i] < 4.0m)
+                    {
+                        <td class="bg-warning">@ViewBag.Siddet[i]</td>
+                    }
+                    else if (ViewBag.Siddet[i] >= 4.0m)
+                    {
+
+                        <td class="bg-danger">@ViewBag.Siddet[i]</td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.Siddet[i]</td>
+
+                    }
+                }
+
+
+
+                <td>@ViewBag.Tarih[i]</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
